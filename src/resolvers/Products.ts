@@ -4,11 +4,36 @@ import { AppDataSource } from '../data-source';
 
 export const ProductQueries = {
   Query: {
-    product: async (_: any, { id }: { id: any }) => {
+    product: async (_: any, { id }: { id: number }) => {
       const productsRepository = AppDataSource.getRepository(Product);
 
-      const product = await productsRepository.findOne(id);
+      const product = await productsRepository.findOne({
+        where: {
+          id: id,
+        },
+      });
       return product;
+    },
+    products: async (_: any, { kategorija }: { kategorija: string }) => {
+      const productsRepository = AppDataSource.getRepository(Product);
+
+      const products = await productsRepository.find({
+        where: {
+          kategorija: kategorija,
+        },
+      });
+      return products;
+    },
+    kategorije: async () => {
+      const productsRepository = AppDataSource.getRepository(Product);
+
+      const kategorije = await productsRepository
+        .createQueryBuilder('product')
+        .select('product.kategorija')
+        .distinct(true)
+        .getRawMany();
+
+      return kategorije.map((kategorija) => kategorija.product_kategorija);
     },
   },
 };

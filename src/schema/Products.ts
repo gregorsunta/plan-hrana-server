@@ -2,8 +2,9 @@ import gql from 'graphql-tag';
 
 export const ProductsTypeDefs = gql`
   type Query {
-    products: [Product]!
-    product: Product
+    products(kategorija: String!): [Product]!
+    product(id: Int!): Product
+    kategorije: [String]!
   }
 
   type Mutation {
