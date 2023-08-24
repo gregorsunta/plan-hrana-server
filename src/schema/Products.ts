@@ -15,24 +15,24 @@ export const ProductsTypeDefs = gql`
     id: Int
     drzava_proizvajalca_poreklo: String
     blagovna_znamka: String
-    ekoloski_proizvodi: Int
+    ekoloski_proizvodi: String
     ena_a: String
-    energijska_vrednost_kJ: Int
+    energijska_vrednost_kJ: String
     enota: String
     hranilna_vrednost_enota: String
-    id_slika: Int
-    integrirana_pridelava: Int
+    id_slika: String
+    integrirana_pridelava: String
     izbrana_kakovost: String
-    izbrana_kakovost_slovenija: Int
+    izbrana_kakovost_slovenija: String
     kategorija: String
     novo_ime: String
-    oznacba_visje_kakovosti: Int
-    slika_ok: Int
+    oznacba_visje_kakovosti: String
+    slika_ok: String
     tip_znamke: String
     vrsta_porekla: String
-    zajamcena_tradicionalna_posebnost: Int
-    zascitena_geografska_oznacba: Int
-    zascitena_oznacba_porekla: Int
+    zajamcena_tradicionalna_posebnost: String
+    zascitena_geografska_oznacba: String
+    zascitena_oznacba_porekla: String
     prices: [PriceInput]
   }
 
@@ -49,17 +49,17 @@ export const ProductsTypeDefs = gql`
     drzava_dolgo_ime: String
     ena_a: String
     enota: String
-    izdelek_je_alternativa: Int
-    izdelek_ni_v_prodaji: Int
-    izdelka_ne_bo_vec_v_prodaji: Int
-    izdelka_trenutno_ni_v_prodaji: Int
+    izdelek_je_alternativa: String
+    izdelek_ni_v_prodaji: String
+    izdelka_ne_bo_vec_v_prodaji: String
+    izdelka_trenutno_ni_v_prodaji: String
     kategorija: String
     kolicina_mL: String
     redna_cena_na_kilogram_liter: Float
     redna_cena_na_kos: Float
     teza_g: Int
     trgovina: String
-    valid_price: Int
+    valid_price: String
     vrsta_popusta: String
   }
 
@@ -73,12 +73,12 @@ export const ProductsTypeDefs = gql`
     enota: String
     hranilna_vrednost_enota: String
     id_slika: Int
-    integrirana_pridelava: Int
+    integrirana_pridelava: String
     izbrana_kakovost: String
-    izbrana_kakovost_slovenija: Int
+    izbrana_kakovost_slovenija: String
     kategorija: String
     novo_ime: String
-    oznacba_visje_kakovosti: Int
+    oznacba_visje_kakovosti: String
     slika_ok: String
     tip_znamke: String
     vrsta_porekla: String
@@ -92,7 +92,7 @@ export const ProductsTypeDefs = gql`
     id: Int
     akcijska_cena_na_kilogram_liter: Float
     akcijska_cena_na_kos: Float
-    alternativna_kategorija: Int
+    alternativna_kategorija: String
     cena_kosarica: Float
     cena_kosarica_akcija: Float
     date: String
@@ -101,17 +101,17 @@ export const ProductsTypeDefs = gql`
     drzava_dolgo_ime: String
     ena_a: String
     enota: String
-    izdelek_je_alternativa: Int
-    izdelek_ni_v_prodaji: Int
-    izdelka_ne_bo_vec_v_prodaji: Int
-    izdelka_trenutno_ni_v_prodaji: Int
+    izdelek_je_alternativa: String
+    izdelek_ni_v_prodaji: String
+    izdelka_ne_bo_vec_v_prodaji: String
+    izdelka_trenutno_ni_v_prodaji: String
     kategorija: String
     kolicina_mL: String
     redna_cena_na_kilogram_liter: Float
     redna_cena_na_kos: Float
     teza_g: Int
     trgovina: String
-    valid_price: Int
+    valid_price: String
     vrsta_popusta: String
   }
 `;
