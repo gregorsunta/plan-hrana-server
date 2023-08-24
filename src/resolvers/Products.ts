@@ -28,10 +28,7 @@ export const ProductMutations = {
         const savedPrices: Price[] = [];
 
         for (const price of prices) {
-          const newPrice = pricesRepository.create({
-            ...price,
-            parentId: savedProduct.id,
-          });
+          const newPrice = pricesRepository.create(price);
           const savedPrice = await pricesRepository.save(newPrice);
           savedPrices.push(savedPrice);
         }

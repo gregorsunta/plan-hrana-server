@@ -9,6 +9,6 @@ import { Scraper } from 'webpuppet/lib/index.js';
   const handle = await scraper.getExtendedHandleBySelector(
     '.price-compare > script',
   );
-  handle.findJSONAndWriteToFile('products.json');
+  handle.findJSONAndWriteToFile('products.js');
 })();
 // priceCompareData

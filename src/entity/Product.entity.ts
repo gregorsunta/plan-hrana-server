@@ -6,38 +6,38 @@ export class Product {
   @PrimaryColumn()
   id!: number;
 
-  @Column()
+  @Column({ nullable: true })
   drzava_proizvajalca_poreklo: string;
 
   @Column()
   blagovna_znamka: string;
 
-  @Column()
-  ekoloski_proizvodi: number;
+  @Column({ nullable: true })
+  ekoloski_proizvodi: string;
 
   @Column()
   ena_a: string;
 
-  @Column()
-  energijska_vrednost_kJ: number;
+  @Column({ nullable: true })
+  energijska_vrednost_kJ: string;
 
   @Column()
   enota: string;
 
-  @Column()
+  @Column({ nullable: true })
   hranilna_vrednost_enota: string;
 
-  @Column()
-  id_slika: number;
+  @Column({ nullable: true })
+  id_slika: string;
 
-  @Column()
-  integrirana_pridelava: number;
+  @Column({ nullable: true })
+  integrirana_pridelava: string;
 
-  @Column()
+  @Column({ nullable: true })
   izbrana_kakovost: string;
 
-  @Column()
-  izbrana_kakovost_slovenija: number;
+  @Column({ nullable: true })
+  izbrana_kakovost_slovenija: string;
 
   @Column()
   kategorija: string;
@@ -45,25 +45,25 @@ export class Product {
   @Column()
   novo_ime: string;
 
-  @Column()
-  oznacba_visje_kakovosti: number;
+  @Column({ nullable: true })
+  oznacba_visje_kakovosti: string;
 
-  @Column()
+  @Column({ nullable: true })
   slika_ok: string;
 
   @Column()
   tip_znamke: string;
 
-  @Column()
+  @Column({ nullable: true })
   vrsta_porekla: string;
 
-  @Column()
+  @Column({ nullable: true })
   zajamcena_tradicionalna_posebnost: string;
 
-  @Column()
+  @Column({ nullable: true })
   zascitena_geografska_oznacba: string;
 
-  @Column()
+  @Column({ nullable: true })
   zascitena_oznacba_porekla: string;
 
   @OneToMany(() => Price, (price) => price.product)

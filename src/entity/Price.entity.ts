@@ -6,22 +6,21 @@ export class Price {
   @PrimaryColumn()
   id: number;
 
-  @Column()
-  parentId: number;
-
-  @Column()
+  @Column({ nullable: true })
   akcijska_cena_na_kilogram_liter: number;
 
-  @Column()
+  @Column({ nullable: true })
   akcijska_cena_na_kos: number;
 
-  @Column()
+  @Column({ nullable: true })
   alternativna_kategorija: string;
 
-  @Column('decimal', { scale: 2 })
+  // 'decimal', { scale: 2 }
+  @Column({ nullable: true })
   cena_kosarica: number;
 
-  @Column('decimal', { scale: 2 })
+  // 'decimal', { scale: 2 }
+  @Column({ nullable: true })
   cena_kosarica_akcija: number;
 
   @Column()
@@ -39,43 +38,45 @@ export class Price {
   @Column()
   ena_a: string;
 
-  @Column()
+  @Column({ nullable: true })
   enota: string;
 
-  @Column()
-  izdelek_je_alternativa: number;
+  @Column({ nullable: true })
+  izdelek_je_alternativa: string;
 
-  @Column()
-  izdelek_ni_v_prodaji: number;
+  @Column({ nullable: true })
+  izdelek_ni_v_prodaji: string;
 
-  @Column()
-  izdelka_ne_bo_vec_v_prodaji: number;
+  @Column({ nullable: true })
+  izdelka_ne_bo_vec_v_prodaji: string;
 
-  @Column()
-  izdelka_trenutno_ni_v_prodaji: number;
+  @Column({ nullable: true })
+  izdelka_trenutno_ni_v_prodaji: string;
 
-  @Column()
+  @Column({ nullable: true })
   kategorija: string;
 
-  @Column()
+  @Column({ nullable: true })
   kolicina_mL: string;
 
-  @Column('decimal', { scale: 2 })
-  redna_cena_na_kilogram_liter: number;
+  // 'decimal', { scale: 2 }
+  @Column({ nullable: true })
+  redna_cena_na_kilogram_liter: string;
 
-  @Column('decimal', { scale: 2 })
+  // 'decimal', { scale: 2 }
+  @Column({ nullable: true })
   redna_cena_na_kos: number;
 
-  @Column()
+  @Column({ nullable: true })
   teza_g: number;
 
   @Column()
   trgovina: string;
 
-  @Column()
-  valid_price: number;
+  @Column({ nullable: true })
+  valid_price: string;
 
-  @Column()
+  @Column({ nullable: true })
   vrsta_popusta: string;
 
   @ManyToOne(() => Product, (product) => product.prices)
