@@ -1,0 +1,1 @@
+export { ProductsTypeDefs } from './Products';
