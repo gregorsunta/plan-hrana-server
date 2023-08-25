@@ -4,11 +4,11 @@ import { Price } from './entity/Price.entity';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: 'Gregor00',
-  database: 'nacrt_hrana_test_db',
+  host: process.env.HOST,
+  port: Number(process.env.PORT),
+  username: process.env.USERNAME_1,
+  password: process.env.PASSWORD,
+  database: process.env.NAME,
   synchronize: true,
   logging: false,
   entities: [Product, Price],
