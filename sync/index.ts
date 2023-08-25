@@ -7,28 +7,25 @@ import { preprocessData } from './preprocessor/index';
 import { uploadProducts } from './uploader/index';
 // @ts-ignore
 import productsData from '../data/products';
-// import { AppDataSource } from '../src/data-source';
-
 dotenv.config({ path: '../.env' });
 
 console.log('Starting script');
-console.log(process.env.HOST);
-console.log(process.env.PASSWORD);
 const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.HOST,
-  port: Number(process.env.PORT),
-  username: process.env.USERNAME_1,
-  password: process.env.PASSWORD,
-  database: process.env.NAME,
+  host: process.env.DB_HOST,
+  // port: Number(process.env.PORT),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
   entities: [Price, Product],
+  extra: {
+    ssl: true,
+  },
 });
 
 const sync = async () => {
-  console.log(process.env.HOST);
-  console.log(process.env.PASSWORD);
   await AppDataSource.initialize()
     .then(() => console.info('AppDataSource initialized'))
     .catch((err) => {

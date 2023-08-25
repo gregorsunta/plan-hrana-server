@@ -5,10 +5,7 @@ export const uploadProducts = async (
   dataSource: any,
   preprocessedProductsData: any,
 ) => {
-  console.log(process.env.PASSWORD);
-
   console.info('Starting upload');
-  console.log('is dataSource initialized: ', dataSource.isInitialized);
   const productsRepo = dataSource.getRepository(Product);
   const pricesRepo = dataSource.getRepository(Price);
   const pauseDuration = 100;
