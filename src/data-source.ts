@@ -14,5 +14,6 @@ export const AppDataSource = new DataSource({
   entities: [Product, Price],
   extra: {
     ssl: true,
+    rejectUnauthorized: false,
   },
 });
