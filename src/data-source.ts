@@ -12,5 +12,4 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
   entities: [Product, Price],
-  extra: { ssl: true },
 });
