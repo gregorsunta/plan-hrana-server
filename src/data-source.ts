@@ -3,7 +3,7 @@ import { Product } from './entity/Product.entity';
 import { Price } from './entity/Price.entity';
 
 export const AppDataSource = new DataSource({
-  type: 'mysql',
+  type: 'postgres',
   host: process.env.HOST,
   port: Number(process.env.PORT),
   username: process.env.USERNAME_1,

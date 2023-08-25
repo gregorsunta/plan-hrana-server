@@ -1,16 +1,20 @@
-import { AppDataSource } from '../../src/data-source';
 import { Product } from '../../src/entity/Product.entity';
 import { Price } from '../../src/entity/Price.entity';
 
-AppDataSource.initialize();
+export const uploadProducts = async (
+  dataSource: any,
+  preprocessedProductsData: any,
+) => {
+  console.log(process.env.PASSWORD);
 
-export const uploadProducts = async (preprocessedProductsData: any) => {
-  const productsRepo = AppDataSource.getRepository(Product);
-  const pricesRepo = AppDataSource.getRepository(Price);
+  console.info('Starting upload');
+  console.log('is dataSource initialized: ', dataSource.isInitialized);
+  const productsRepo = dataSource.getRepository(Product);
+  const pricesRepo = dataSource.getRepository(Price);
   const pauseDuration = 100;
 
   for (let i = 0; i < preprocessedProductsData.length; i++) {
-    if (i % 100 === 0) {
+    if (i % 100 === 0 && i !== 0) {
       console.info('uploaded', i, 'products');
       console.info('calling timeout');
       await new Promise((resolve) => setTimeout(resolve, pauseDuration));

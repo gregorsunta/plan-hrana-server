@@ -7,21 +7,21 @@ export class Price {
   id: number;
 
   @Column({ nullable: true })
-  akcijska_cena_na_kilogram_liter: number;
+  akcijska_cena_na_kilogram_liter: string;
 
   @Column({ nullable: true })
-  akcijska_cena_na_kos: number;
+  akcijska_cena_na_kos: string;
 
   @Column({ nullable: true })
   alternativna_kategorija: string;
 
   // 'decimal', { scale: 2 }
   @Column({ nullable: true })
-  cena_kosarica: number;
+  cena_kosarica: string;
 
   // 'decimal', { scale: 2 }
   @Column({ nullable: true })
-  cena_kosarica_akcija: number;
+  cena_kosarica_akcija: string;
 
   @Column()
   date: string;
@@ -65,10 +65,10 @@ export class Price {
 
   // 'decimal', { scale: 2 }
   @Column({ nullable: true })
-  redna_cena_na_kos: number;
+  redna_cena_na_kos: string;
 
   @Column({ nullable: true })
-  teza_g: number;
+  teza_g: string;
 
   @Column()
   trgovina: string;
