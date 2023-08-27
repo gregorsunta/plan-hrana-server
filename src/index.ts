@@ -1,18 +1,23 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: './.env' });
 
 import 'reflect-metadata';
-import { ApolloServer } from '@apollo/server';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { AppDataSource } from './data-source';
-import { ProductsTypeDefs } from './schema';
-import { ProductQueries, ProductMutations } from './resolvers/Products';
-import { startStandaloneServer } from '@apollo/server/standalone';
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServer } from '@apollo/server';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { AppDataSource } from './data-source';
+import { CategoriesTypeDefs, PricesTypeDefs, ProductsTypeDefs } from './schema';
+import {
+  ProductsQueries,
+  ProductsMutations,
+  CategoriesQueries,
+  PricesQueries,
+} from './resolvers';
+
+dotenv.config({ path: './.env' });
 
 const main = async () => {
   const app = express();
@@ -24,8 +29,13 @@ const main = async () => {
   });
 
   const server = new ApolloServer({
-    typeDefs: ProductsTypeDefs,
-    resolvers: [ProductQueries, ProductMutations],
+    typeDefs: [ProductsTypeDefs, CategoriesTypeDefs, PricesTypeDefs],
+    resolvers: [
+      ProductsQueries,
+      ProductsMutations,
+      CategoriesQueries,
+      PricesQueries,
+    ],
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 

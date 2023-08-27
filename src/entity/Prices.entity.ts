@@ -1,8 +1,8 @@
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Product } from './Product.entity';
+import { Products } from './Products.entity';
 
 @Entity()
-export class Price {
+export class Prices {
   @PrimaryColumn()
   id: number;
 
@@ -79,6 +79,6 @@ export class Price {
   @Column({ nullable: true })
   vrsta_popusta: string;
 
-  @ManyToOne(() => Product, (product) => product.prices)
-  product: Product;
+  @ManyToOne(() => Products, (product) => product.prices)
+  products: Products;
 }

@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --esm ./src/index.ts",
     "build": "tsc",
-    "sync-products": "cd ./sync/ && ts-node --esm ./index.ts"
+    "sync": "cd ./sync/ && ts-node --esm ./index.ts",
+    "dev": "env-cmd -f dev.env nodemon --esm ./src/index.ts",
+    "dev-sync": "cd ./sync/ && env-cmd -f ../dev.env ts-node --esm ./index.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "env-cmd": "^10.1.0",
     "express": "^4.18.2",
     "graphql": "^16.8.0",
     "graphql-tag": "^2.12.6",

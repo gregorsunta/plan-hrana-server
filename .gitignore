@@ -7,4 +7,5 @@ temp/
 data/
 dist/
 .env
+dev.env
 todo.md

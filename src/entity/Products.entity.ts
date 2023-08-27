@@ -1,8 +1,8 @@
 import { BaseEntity, Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
-import { Price } from './Price.entity';
+import { Prices } from './Prices.entity';
 
 @Entity()
-export class Product {
+export class Products {
   @PrimaryColumn()
   id!: number;
 
@@ -66,6 +66,6 @@ export class Product {
   @Column({ nullable: true })
   zascitena_oznacba_porekla: string;
 
-  @OneToMany(() => Price, (price) => price.product)
-  prices: Price[];
+  @OneToMany(() => Prices, (price) => price.products)
+  prices: Prices[];
 }
