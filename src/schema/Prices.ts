@@ -1,9 +1,6 @@
 import gql from 'graphql-tag';
 
 export const PricesTypeDefs = gql`
-  type Query {
-  }
-
   input PriceInput {
     id: Int
     akcijska_cena_na_kilogram_liter: Float

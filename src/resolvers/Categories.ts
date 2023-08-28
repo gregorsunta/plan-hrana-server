@@ -14,13 +14,13 @@ export const CategoriesQueries = {
     subcategories: async () => {
       const productsRepository = AppDataSource.getRepository(Products);
 
-      const kategorije = await productsRepository
+      const categories = await productsRepository
         .createQueryBuilder('product')
         .select('product.kategorija')
         .distinct(true)
         .getRawMany();
 
-      return kategorije.map((subcategory) => subcategory.product_kategorija);
+      return categories.map((subcategory) => subcategory.product_kategorija);
     },
   },
 };

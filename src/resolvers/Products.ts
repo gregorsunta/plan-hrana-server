@@ -24,17 +24,6 @@ export const ProductsQueries = {
       });
       return products;
     },
-    kategorije: async () => {
-      const productsRepository = AppDataSource.getRepository(Products);
-
-      const kategorije = await productsRepository
-        .createQueryBuilder('product')
-        .select('product.kategorija')
-        .distinct(true)
-        .getRawMany();
-
-      return kategorije.map((kategorija) => kategorija.product_kategorija);
-    },
   },
 };
 

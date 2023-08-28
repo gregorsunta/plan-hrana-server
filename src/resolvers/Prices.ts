@@ -1,3 +1,1 @@
-export const PricesQueries = {
-  Query: {},
-};
+export const PricesQueries = {};
