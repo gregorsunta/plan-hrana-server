@@ -2,7 +2,11 @@ import gql from 'graphql-tag';
 
 export const ProductsTypeDefs = gql`
   type Query {
-    products(kategorija: String!): [Product]!
+    productsByCategories(
+      categories: [String]!
+      page: Int!
+      pageSize: Int!
+    ): [Product]!
     product(id: Int!): Product
   }
 
@@ -44,7 +48,7 @@ export const ProductsTypeDefs = gql`
     energijska_vrednost_kJ: Int
     enota: String
     hranilna_vrednost_enota: String
-    id_slika: Int
+    id_slika: String
     integrirana_pridelava: String
     izbrana_kakovost: String
     izbrana_kakovost_slovenija: String

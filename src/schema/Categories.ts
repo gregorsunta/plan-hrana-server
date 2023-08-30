@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const CategoriesTypeDefs = gql`
   type Query {
-    categories: [String]!
+    categories: [Category]!
     subcategories: [String]!
   }
 

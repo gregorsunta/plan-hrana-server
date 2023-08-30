@@ -1,6 +1,7 @@
 import { Products } from '../entity/Products.entity';
 import { Prices } from '../entity/Prices.entity';
 import { AppDataSource } from '../data-source';
+import { In } from 'typeorm';
 
 export const ProductsQueries = {
   Query: {
@@ -11,18 +12,40 @@ export const ProductsQueries = {
         where: {
           id: id,
         },
+        relations: ['prices'],
       });
       return product;
     },
-    products: async (_: any, { kategorija }: { kategorija: string }) => {
-      const productsRepository = AppDataSource.getRepository(Products);
 
-      const products = await productsRepository.find({
+    productsByCategories: async (
+      _: any,
+      {
+        categories,
+        page,
+        pageSize,
+      }: { categories: any; datestamp: any; page: number; pageSize: number },
+    ) => {
+      const productsRepository = AppDataSource.getRepository(Products);
+      const [products, count] = await productsRepository.findAndCount({
         where: {
-          kategorija: kategorija,
+          kategorija: In(categories),
         },
+        relations: ['prices'],
+        skip: (page - 1) * pageSize,
+        take: pageSize,
       });
-      return products;
+
+      const filteredProducts = products.map((product) => {
+        const uniquePrices = Array.from(
+          new Set(product.prices.map((price) => price.trgovina)),
+        );
+        const uniquePriceObjects = uniquePrices.map((trgovina) => {
+          return product.prices.find((price) => price.trgovina === trgovina);
+        });
+        return { ...product, prices: uniquePriceObjects };
+      });
+
+      return filteredProducts;
     },
   },
 };

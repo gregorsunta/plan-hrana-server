@@ -7,9 +7,7 @@ export const CategoriesQueries = {
   Query: {
     categories: async () => {
       const productsRepository = AppDataSource.getRepository(Categories);
-      const categories = await productsRepository.find();
-
-      return categories.map((category) => category.name);
+      return await productsRepository.find();
     },
     subcategories: async () => {
       const productsRepository = AppDataSource.getRepository(Products);
