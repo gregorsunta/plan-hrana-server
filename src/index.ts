@@ -43,7 +43,7 @@ const main = async () => {
   const graphqlPath = '/graphql';
   app.use(
     graphqlPath,
-    cors(),
+    cors({ origin: process.env.ALLOWED_ORIGIN }),
     bodyParser.json({ limit: '50mb' }),
     expressMiddleware(server),
   );
