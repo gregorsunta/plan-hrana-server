@@ -43,7 +43,7 @@ const main = async () => {
   const graphqlPath = '/graphql';
   app.use(
     graphqlPath,
-    cors({ origin: process.env.ALLOWED_ORIGIN }),
+    cors({ origin: 'https://plan-hrana-client-static.onrender.com' }),
     bodyParser.json({ limit: '50mb' }),
     expressMiddleware(server),
   );
