@@ -1,13 +1,13 @@
-import { Product } from '../../src/entity/Product.entity';
-import { Price } from '../../src/entity/Price.entity';
+import { Products } from '../../src/entity/Products.entity.ts';
+import { Prices } from '../../src/entity/Prices.entity.ts';
 
 export const uploadProducts = async (
   dataSource: any,
   preprocessedProductsData: any,
 ) => {
   console.info('Starting upload');
-  const productsRepo = dataSource.getRepository(Product);
-  const pricesRepo = dataSource.getRepository(Price);
+  const productsRepo = dataSource.getRepository(Products);
+  const pricesRepo = dataSource.getRepository(Prices);
   const pauseDuration = 100;
 
   for (let i = 0; i < preprocessedProductsData.length; i++) {

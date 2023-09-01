@@ -8,14 +8,18 @@ import bodyParser from 'body-parser';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { AppDataSource } from './data-source';
-import { CategoriesTypeDefs, PricesTypeDefs, ProductsTypeDefs } from './schema';
+import { AppDataSource } from './data-source.ts';
+import {
+  CategoriesTypeDefs,
+  PricesTypeDefs,
+  ProductsTypeDefs,
+} from './schema/index.ts';
 import {
   ProductsQueries,
   ProductsMutations,
   CategoriesQueries,
   PricesQueries,
-} from './resolvers';
+} from './resolvers/index.ts';
 
 dotenv.config({ path: './.env' });
 
@@ -40,10 +44,11 @@ const main = async () => {
   });
 
   await server.start();
+
   const graphqlPath = '/graphql';
   app.use(
     graphqlPath,
-    cors({ origin: 'https://plan-hrana-client-static.onrender.com' }),
+    cors({ origin: process.env.ALLOWED_ORIGIN }),
     bodyParser.json({ limit: '50mb' }),
     expressMiddleware(server),
   );

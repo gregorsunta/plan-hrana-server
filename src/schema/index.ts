@@ -1,3 +1,3 @@
-export { CategoriesTypeDefs } from './Categories';
-export { ProductsTypeDefs } from './Products';
-export { PricesTypeDefs } from './Prices';
+export { CategoriesTypeDefs } from './Categories.ts';
+export { ProductsTypeDefs } from './Products.ts';
+export { PricesTypeDefs } from './Prices.ts';

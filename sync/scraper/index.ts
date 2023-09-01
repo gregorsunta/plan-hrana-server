@@ -1,6 +1,6 @@
 import { Scraper } from 'webpuppet/lib/index.js';
 
-(async () => {
+export const scrape = async (outputPath: string) => {
   const scraper = new Scraper();
 
   await scraper.init('https://www.primerjaj-cene.si/');
@@ -9,6 +9,13 @@ import { Scraper } from 'webpuppet/lib/index.js';
   const handle = await scraper.getExtendedHandleBySelector(
     '.price-compare > script',
   );
-  handle.findJSONAndWriteToFile('products.js');
-})();
+
+  if (!handle) {
+    console.error('Handle is not defined.');
+    return;
+  }
+
+  await handle.findJSONAndWriteToFile(outputPath);
+};
+
 // priceCompareData

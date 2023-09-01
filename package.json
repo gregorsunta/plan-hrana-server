@@ -11,6 +11,7 @@
     "dev": "env-cmd -f dev.env nodemon --esm ./src/index.ts",
     "dev-sync": "cd ./sync/ && env-cmd -f ../dev.env ts-node --esm ./index.ts"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

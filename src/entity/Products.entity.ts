@@ -1,5 +1,5 @@
 import { BaseEntity, Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
-import { Prices } from './Prices.entity';
+import { Prices } from './Prices.entity.ts';
 
 @Entity()
 export class Products {

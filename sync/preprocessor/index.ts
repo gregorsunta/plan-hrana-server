@@ -1,6 +1,7 @@
-export const preprocessData = (productsData: any) => {
+export const preprocessData = (productsData: string) => {
   console.info('Starting preprocessing');
-  return productsData.map((product: any) => {
+  const js = JSON.parse(productsData);
+  return js.products.map((product: any) => {
     const productPrices = product.prices.map((price: any) => {
       const { 'količina (mL)': kolicinaValue, ...otherProperties } = price;
       return {
@@ -10,7 +11,6 @@ export const preprocessData = (productsData: any) => {
     });
     return { ...product, prices: productPrices };
   });
-  console.info('Preprocessing finished');
 };
 
 // const productsJSON = JSON.stringify(preprocessedProducts);

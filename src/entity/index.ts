@@ -1,3 +1,3 @@
-export { Categories } from './Categories.entity';
-export { Products } from './Products.entity';
-export { Prices } from './Prices.entity';
+export { Categories } from './Categories.entity.ts';
+export { Products } from './Products.entity.ts';
+export { Prices } from './Prices.entity.ts';

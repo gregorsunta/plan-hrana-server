@@ -1,15 +1,18 @@
 import dotenv from 'dotenv';
+import fs from 'fs';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { Price } from '../src/entity/Price.entity';
-import { Product } from '../src/entity/Product.entity';
-import { preprocessData } from './preprocessor/index';
-import { uploadProducts } from './uploader/index';
+import { Prices } from '../src/entity/Prices.entity.ts';
+import { Products } from '../src/entity/Products.entity.ts';
+import { preprocessData } from './preprocessor/index.ts';
+import { uploadProducts } from './uploader/index.ts';
+import { scrape } from './scraper/index.ts';
 // @ts-ignore
-import productsData from '../data/products';
+// import productsData from '../data/products';
 dotenv.config({ path: '../.env' });
 
 console.log('Starting script');
+
 const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
@@ -19,13 +22,22 @@ const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [Price, Product],
+  entities: [Prices, Products],
   extra: {
-    ssl: true,
+    ssl: process.env.DB_SSL,
   },
 });
 
-const sync = async () => {
+const secondsUinxEpoch = Math.floor(Date.now() / 1000);
+const fileName = secondsUinxEpoch + '_' + 'products_prices.json';
+
+const path = `../data/${fileName}`;
+
+const scrapeData = async (filePath: string) => {
+  await scrape(filePath);
+};
+
+const uploadData = async (filePath: string) => {
   await AppDataSource.initialize()
     .then(() => console.info('AppDataSource initialized'))
     .catch((err) => {
@@ -33,8 +45,12 @@ const sync = async () => {
       console.error(err);
     });
   console.log('Starting sync');
-  const preprocessedProductsData = preprocessData(productsData);
+
+  const file = fs.readFileSync(filePath, 'utf-8');
+
+  const preprocessedProductsData = preprocessData(file);
   uploadProducts(AppDataSource, preprocessedProductsData);
 };
 
-sync();
+await scrapeData(path);
+await uploadData(path);

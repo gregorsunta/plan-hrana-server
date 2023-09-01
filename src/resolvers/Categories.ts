@@ -1,7 +1,7 @@
-import { Products } from '../entity/Products.entity';
-import { Prices } from '../entity/Prices.entity';
-import { AppDataSource } from '../data-source';
-import { Categories } from '../entity';
+import { Products } from '../entity/Products.entity.ts';
+import { Prices } from '../entity/Prices.entity.ts';
+import { AppDataSource } from '../data-source.ts';
+import { Categories } from '../entity/index.ts';
 
 export const CategoriesQueries = {
   Query: {
