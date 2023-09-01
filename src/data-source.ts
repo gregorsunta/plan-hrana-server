@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Categories, Products, Prices } from './entity/index.ts';
+import { Categories, Products, Prices } from './entity/index.js';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',

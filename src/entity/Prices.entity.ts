@@ -7,7 +7,7 @@ import {
   PrimaryColumn,
   Relation,
 } from 'typeorm';
-import { Products } from './Products.entity.ts';
+import { Products } from './Products.entity.js';
 
 const priceParameter: ColumnOptions = {
   type: 'decimal',

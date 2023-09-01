@@ -1,6 +1,6 @@
-import { Prices } from '../entity/Prices.entity.ts';
-import { AppDataSource } from '../data-source.ts';
-import { Products } from '../entity/Products.entity.ts';
+import { Prices } from '../entity/Prices.entity.js';
+import { AppDataSource } from '../data-source.js';
+import { Products } from '../entity/Products.entity.js';
 import { In } from 'typeorm';
 
 export const ProductsQueries = {

@@ -8,18 +8,18 @@ import bodyParser from 'body-parser';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { AppDataSource } from './data-source.ts';
+import { AppDataSource } from './data-source.js';
 import {
   CategoriesTypeDefs,
   PricesTypeDefs,
   ProductsTypeDefs,
-} from './schema/index.ts';
+} from './schema/index.js';
 import {
   ProductsQueries,
   ProductsMutations,
   CategoriesQueries,
   PricesQueries,
-} from './resolvers/index.ts';
+} from './resolvers/index.js';
 
 dotenv.config({ path: './.env' });
 
