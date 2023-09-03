@@ -9,5 +9,5 @@ export class Categories {
   name: string;
 
   @Column('text', { array: true })
-  subcategoryids: string[];
+  subcategories: string[];
 }

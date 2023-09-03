@@ -2,11 +2,11 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { Prices } from '../src/entity/Prices.entity.ts';
-import { Products } from '../src/entity/Products.entity.ts';
-import { preprocessData } from './preprocessor/index.ts';
-import { uploadProducts } from './uploader/index.ts';
-import { scrape } from './scraper/index.ts';
+import { Prices } from '../src/entity/Prices.entity.js';
+import { Products } from '../src/entity/Products.entity.js';
+import { preprocessProducts } from './preprocessor/index.js';
+import { uploadProducts } from './uploader/index.js';
+import { scrape } from './scraper/index.js';
 // @ts-ignore
 // import productsData from '../data/products';
 dotenv.config({ path: '../.env' });
@@ -48,7 +48,7 @@ const uploadData = async (filePath: string) => {
 
   const file = fs.readFileSync(filePath, 'utf-8');
 
-  const preprocessedProductsData = preprocessData(file);
+  const preprocessedProductsData = preprocessProducts(file);
   uploadProducts(AppDataSource, preprocessedProductsData);
 };
 

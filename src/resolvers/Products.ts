@@ -17,35 +17,67 @@ export const ProductsQueries = {
       return product;
     },
 
-    productsByCategories: async (
+    products: async (
       _: any,
       {
         categories,
         page,
         pageSize,
-      }: { categories: any; datestamp: any; page: number; pageSize: number },
+        shops,
+      }: {
+        categories: string[];
+        page: number;
+        pageSize: number;
+        shops: string[];
+      },
     ) => {
       const productsRepository = AppDataSource.getRepository(Products);
-      const [products, count] = await productsRepository.findAndCount({
-        where: {
-          kategorija: In(categories),
-        },
-        relations: ['prices'],
-        skip: (page - 1) * pageSize,
-        take: pageSize,
-      });
 
-      const filteredProducts = products.map((product) => {
-        const uniquePrices = Array.from(
-          new Set(product.prices.map((price) => price.trgovina)),
+      const query = productsRepository
+        .createQueryBuilder('product')
+        .where('product.kategorija IN (:...categories)', { categories })
+        .skip((page - 1) * pageSize)
+        .take(pageSize);
+
+      if (shops) {
+        query.innerJoinAndSelect(
+          'product.prices',
+          'price',
+          'price.trgovina IN (:...shops)',
+          { shops },
         );
-        const uniquePriceObjects = uniquePrices.map((trgovina) => {
-          return product.prices.find((price) => price.trgovina === trgovina);
-        });
-        return { ...product, prices: uniquePriceObjects };
-      });
+      } else {
+        query.innerJoinAndSelect('product.prices', 'price');
+      }
 
-      return filteredProducts;
+      const products = await query.getMany();
+
+      const filterPrices = (prices: Prices[]): Prices[] => {
+        const latestPrices: { [trgovina: string]: Prices } = {};
+
+        prices.forEach((price) => {
+          if (!price.redna_cena_na_kilogram_liter || 0) {
+            return;
+          }
+          const { trgovina, datestamp } = price;
+
+          if (
+            !latestPrices[trgovina] ||
+            datestamp > latestPrices[trgovina].datestamp
+          ) {
+            latestPrices[trgovina] = price;
+          }
+        });
+
+        return Object.values(latestPrices);
+      };
+
+      const produkti = products.map((product) => ({
+        ...product,
+        prices: filterPrices(product.prices),
+      }));
+
+      return produkti;
     },
   },
 };

@@ -9,6 +9,16 @@ export const CategoriesQueries = {
       const productsRepository = AppDataSource.getRepository(Categories);
       return await productsRepository.find();
     },
+    category: async (_: any, { id }: { id: number }) => {
+      const productsRepository = AppDataSource.getRepository(Categories);
+      const category = await productsRepository.findOne({
+        where: {
+          id: id,
+        },
+        // relations: ['prices'],
+      });
+      return category;
+    },
     subcategories: async () => {
       const productsRepository = AppDataSource.getRepository(Products);
 

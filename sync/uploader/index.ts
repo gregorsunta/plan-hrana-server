@@ -1,5 +1,5 @@
-import { Products } from '../../src/entity/Products.entity.ts';
-import { Prices } from '../../src/entity/Prices.entity.ts';
+import { Products } from '../../src/entity/Products.entity.js';
+import { Prices } from '../../src/entity/Prices.entity.js';
 
 export const uploadProducts = async (
   dataSource: any,

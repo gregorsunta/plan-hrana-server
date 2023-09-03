@@ -2,10 +2,11 @@ import gql from 'graphql-tag';
 
 export const ProductsTypeDefs = gql`
   type Query {
-    productsByCategories(
+    products(
       categories: [String]!
       page: Int!
       pageSize: Int!
+      shops: [String]
     ): [Product]!
     product(id: Int!): Product
   }

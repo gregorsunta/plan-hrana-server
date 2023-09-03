@@ -1,4 +1,4 @@
-export const preprocessData = (productsData: string) => {
+export const preprocessProducts = (productsData: string) => {
   console.info('Starting preprocessing');
   const js = JSON.parse(productsData);
   return js.products.map((product: any) => {

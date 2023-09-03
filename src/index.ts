@@ -20,7 +20,6 @@ import {
   CategoriesQueries,
   PricesQueries,
 } from './resolvers/index.js';
-
 dotenv.config({ path: './.env' });
 
 const main = async () => {
