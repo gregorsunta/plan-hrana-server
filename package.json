@@ -7,9 +7,11 @@
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "sync": "cd ./sync/ && ts-node --esm ./index.ts",
+    "sync-products": "cd ./sync/ && ts-node --esm ./uploadProducts.ts",
+    "sync-categories": "cd ./sync/ && ts-node --esm ./uploadCategories.ts",
     "dev": "env-cmd -f dev.env nodemon --esm ./src/index.ts",
-    "dev-sync": "cd ./sync/ && env-cmd -f ../dev.env ts-node --esm ./index.ts"
+    "dev-sync-products": "cd ./sync/ && env-cmd -f ../dev.env ts-node --esm ./uploadProducts.ts",
+    "dev-sync-categories": "cd ./sync/ && env-cmd -f ../dev.env ts-node --esm ./uploadCategories.ts"
   },
   "type": "module",
   "keywords": [],

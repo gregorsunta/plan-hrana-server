@@ -13,9 +13,7 @@ export const preprocessProducts = (productsData: string) => {
   });
 };
 
-// const productsJSON = JSON.stringify(preprocessedProducts);
-// fs.writeFile('./data/products_preprocessed.js', productsJSON, (err) => {
-//   if (err) throw err;
-// });
-
-// preprocessData(productsData);
+export const parseFromJSON = (productsData: string) => {
+  console.info('Starting preprocessing');
+  return JSON.parse(productsData);
+};

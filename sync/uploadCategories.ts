@@ -4,11 +4,10 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Prices } from '../src/entity/Prices.entity.js';
 import { Products } from '../src/entity/Products.entity.js';
-import { preprocessProducts } from './preprocessor/index.js';
-import { uploadProducts } from './uploader/index.js';
-import { scrape } from './scraper/index.js';
-// @ts-ignore
-// import productsData from '../data/products';
+import { parseFromJSON, preprocessProducts } from './preprocessor/index.js';
+import { uploadCategories, uploadProducts } from './uploader/index.js';
+import { Categories } from '../src/entity/Categories.entity.js';
+
 dotenv.config({ path: '../.env' });
 
 console.log('Starting script');
@@ -22,20 +21,11 @@ const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [Prices, Products],
+  entities: [Prices, Products, Categories],
   extra: {
     ssl: process.env.DB_SSL,
   },
 });
-
-const secondsUinxEpoch = Math.floor(Date.now() / 1000);
-const fileName = secondsUinxEpoch + '_' + 'products_prices.json';
-
-const path = `../data/${fileName}`;
-
-const scrapeData = async (filePath: string) => {
-  await scrape(filePath);
-};
 
 const uploadData = async (filePath: string) => {
   await AppDataSource.initialize()
@@ -44,13 +34,12 @@ const uploadData = async (filePath: string) => {
       console.error('ERROR OCCURED WHEN CONNECTING TO DATABASE');
       console.error(err);
     });
-  console.log('Starting sync');
+  console.log('Starting uploadCategories');
 
   const file = fs.readFileSync(filePath, 'utf-8');
 
-  const preprocessedProductsData = preprocessProducts(file);
-  uploadProducts(AppDataSource, preprocessedProductsData);
+  const js = parseFromJSON(file);
+  uploadCategories(AppDataSource, js);
 };
 
-await scrapeData(path);
-await uploadData(path);
+await uploadData('../data/categoryData.json');
